@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0b0c10;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Canvas für den Weltall-Hintergrund */
+#spaceCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Hauptkarte: Sauberes Pastellgelb mit partiellem Retro-Look */
+.card {
+    background: #fef08a; /* Warmes Pastellgelb */
+    border: 3.5px solid #1c1917;
+    padding: 35px 25px;
+    border-radius: 20px;
+    /* Harter Pop-Art Blockschatten statt KI-Glow */
+    box-shadow: 8px 8px 0px #1c1917;
+    text-align: center;
+    max-width: 380px;
+    width: 88%;
+    z-index: 10;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.heart-icon {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+    animation: pulse 1.5s infinite;
+}
+
+h1 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 2.3rem;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    color: #1c1917;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    font-size: 0.92rem;
+    color: #78350f;
+    font-weight: 500;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+/* Fragen-Box mit klarem Rand */
+.question-container {
+    background: #ffffff;
+    border: 2.5px solid #1c1917;
+    padding: 18px 15px;
+    border-radius: 14px;
+    margin-bottom: 28px;
+    box-shadow: 4px 4px 0px #fde047;
+}
+
+.question {
+    font-size: 1.05rem;
+    color: #1c1917;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    min-height: 60px;
+}
+
+/* Button Styling: Knallig, crisp & klickbar */
+.btn {
+    padding: 12px 22px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border: 2.5px solid #1c1917;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.btn-yes {
+    background-color: #facc15;
+    color: #1c1917;
+    box-shadow: 4px 4px 0px #1c1917;
+    z-index: 2;
+}
+
+.btn-yes:hover {
+    background-color: #eab308;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #1c1917;
+}
+
+.btn-yes:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #1c1917;
+}
+
+.btn-no {
+    background-color: #ffffff;
+    color: #71717a;
+    box-shadow: 3px 3px 0px #1c1917;
+    position: relative;
+}
+
+/* Ladebalken Styling */
+#loadingContainer {
+    margin: 20px 0;
+}
+
+#loadingStatus {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1c1917;
+    margin-bottom: 12px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 16px;
+    background-color: #ffffff;
+    border: 2.5px solid #1c1917;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 2px;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #facc15;
+    border-radius: 6px;
+    transition: width 0.4s ease;
+}
+
+/* Pop-up Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(11, 12, 16, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.modal-box {
+    background: #fef08a;
+    border: 3.5px solid #1c1917;
+    border-radius: 20px;
+    padding: 30px 20px;
+    max-width: 320px;
+    width: 85%;
+    text-align: center;
+    box-shadow: 8px 8px 0px #1c1917;
+    animation: popupIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.modal-box h3 {
+    font-size: 1.4rem;
+    color: #1c1917;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.modal-box p {
+    font-size: 0.95rem;
+    color: #78350f;
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#successMessage {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+#successMessage h2 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: #1c1917;
+    margin-bottom: 12px;
+}
+
+#successMessage p {
+    color: #78350f;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popupIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
